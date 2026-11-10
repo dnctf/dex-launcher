@@ -46,7 +46,9 @@ jobs:
           export ANDROID_NDK_HOME=$(ls -d $ANDROID_SDK_ROOT/ndk/* | tail -n 1)
           echo "Using Android NDK: $ANDROID_NDK_HOME"
           mkdir -p app/src/main/jniLibs
-          cargo ndk -t arm64-v8a -t armeabi-v7a -t x86_64 -o app/src/main/jniLibs build --release --manifest-path rust-core/Cargo.toml
+          cd rust-core
+          cargo ndk -t arm64-v8a -t armeabi-v7a -t x86_64 -o ../app/src/main/jniLibs build --release
+          cd ..
           ls -la app/src/main/jniLibs/*
 
       - name: Make Gradlew Executable
