@@ -91,13 +91,21 @@
             android:layout_marginBottom="16dp" />
 
         <!-- Show Labels -->
-        <CheckBox
-            android:id="@+id/cb_show_labels"
+        <Button
+            android:id="@+id/btn_change_wallpaper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tampilkan Nama Aplikasi di Desktop"
-            android:textColor="@color/dex_text_primary"
-            android:checked="true" />
+            android:text="Ubah Wallpaper"
+            android:layout_marginTop="12dp" />
+
+        <ImageView
+            android:id="@+id/img_icon_preview"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_dex_start"
+            android:contentDescription="Icon preview" />
+
 
     </LinearLayout>
 

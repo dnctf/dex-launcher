@@ -364,13 +364,91 @@ class MainActivity : AppCompatActivity() {
 
         var selectedShapeIndex = shapes.indexOf(currentSettings.iconShape).takeIf { it >= 0 } ?: 0
 
-        val dialogView = layoutInflater.inflate(R.layout.dialog_settings, null)
-        val spinnerShape = dialogView.findViewById<Spinner>(R.id.spinner_icon_shape)
-        val seekIconSize = dialogView.findViewById<SeekBar>(R.id.seek_icon_size)
-        val tvIconSizeVal = dialogView.findViewById<TextView>(R.id.tv_icon_size_val)
-        val cbShowLabels = dialogView.findViewById<CheckBox>(R.id.cb_show_labels)
-        val seekGridColumns = dialogView.findViewById<SeekBar>(R.id.seek_grid_columns)
-        val tvGridVal = dialogView.findViewById<TextView>(R.id.tv_grid_val)
+        // New UI elements
+        val btnChangeWallpaper = dialogView.findViewById<Button>(R.id.btn_change_wallpaper)
+        val imgIconPreview = dialogView.findViewById<ImageView>(R.id.img_icon_preview)
+        // Optional widget manager button (currently placeholder)
+        // val btnManageWidgets = dialogView.findViewById<Button>(R.id.btn_manage_widgets)
+
+        // Wallpaper picker
+        btnChangeWallpaper.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SET_WALLPAPER)
+            startActivity(Intent.createChooser(intent, "Pilih Wallpaper"))
+        }
+
+        // Update icon preview when size changes
+        seekIconSize.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                val sizeDp = progress + 40
+                val sizePx = (sizeDp * resources.displayMetrics.density).toInt()
+                val params = imgIconPreview.layoutParams
+                params.width = sizePx
+                params.height = sizePx
+                imgIconPreview.layoutParams = params
+                tvIconSizeVal.text = "${sizeDp} dp"
+                // Update current settings
+                currentSettings.iconSizeDp = sizeDp
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                saveSettings()
+                desktopAdapter.updateData(desktopApps, currentSettings)
+                taskbarAdapter.updateData(pinnedTaskbarApps, currentSettings.iconShape)
+            }
+        })
+
+        // Existing listeners for other controls (unchanged)
+        seekGridColumns.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                tvGridVal.text = "${progress + 4} Kolom"
+                // Update current settings
+                currentSettings.gridColumns = progress + 4
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                saveSettings()
+                // Rebuild desktop layout with new column count
+                binding.rvDesktop.layoutManager = GridLayoutManager(this@MainActivity, currentSettings.gridColumns)
+                desktopAdapter.updateData(desktopApps, currentSettings)
+            }
+        })
+
+        cbShowLabels.setOnCheckedChangeListener { _, isChecked ->
+            currentSettings.showLabels = isChecked
+            saveSettings()
+            desktopAdapter.updateData(desktopApps, currentSettings)
+        }
+
+        // Shape spinner unchanged
+        spinnerShape.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                currentSettings.iconShape = shapes[position]
+                saveSettings()
+                desktopAdapter.updateData(desktopApps, currentSettings)
+                taskbarAdapter.updateData(pinnedTaskbarApps, currentSettings.iconShape)
+            }
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>?) {}
+        }
+
+        // Show dialog
+        AlertDialog.Builder(this)
+            .setTitle("Pengaturan Launcher")
+            .setView(dialogView)
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .setNegativeButton("Reset Home") { _, _ ->
+                // Clear desktop apps
+                desktopApps.clear()
+                desktopAdapter.updateData(desktopApps, currentSettings)
+                Toast.makeText(this, "Homescreen dibersihkan", Toast.LENGTH_SHORT).show()
+            }
+            .show()
+
+        // New UI elements
+        val btnChangeWallpaper = dialogView.findViewById<Button>(R.id.btn_change_wallpaper)
+        val imgIconPreview = dialogView.findViewById<ImageView>(R.id.img_icon_preview)
+        // Optional widget manager button (currently placeholder)
+        // val btnManageWidgets = dialogView.findViewById<Button>(R.id.btn_manage_widgets)
 
         // Setup Shape Spinner
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, shapeNames)

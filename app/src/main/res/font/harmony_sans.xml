@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- Placeholder: using Android system sans-serif as HarmonyOS-like font -->
+    <font app:fontStyle="normal" app:fontWeight="400" app:font="@android:font/sans_serif" />
+</font-family

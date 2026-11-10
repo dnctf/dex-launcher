@@ -6,5 +6,5 @@
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
-    </style>
+        <item name="android:fontFamily">@font/harmony_sans</item>
 </resources>
