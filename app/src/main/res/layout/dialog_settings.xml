@@ -92,11 +92,12 @@
 
         <!-- Show Labels -->
         <Button
-            android:id="@+id/btn_change_wallpaper"
+            android:id="@+id/btn_manage_widgets"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ubah Wallpaper"
+            android:text="Kelola Widget"
             android:layout_marginTop="12dp" />
+
 
         <ImageView
             android:id="@+id/img_icon_preview"
