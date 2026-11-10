@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">DeX Launcher</string>
+    <string name="search_apps_hint">Cari aplikasi atau dokumen…</string>
+    <string name="pinned_apps">Aplikasi Tersemat</string>
+    <string name="all_apps">Semua Aplikasi</string>
+    <string name="settings">Pengaturan</string>
+    <string name="desktop">Desktop</string>
+    <string name="icon_customization">Kustomisasi Icon</string>
+    <string name="icon_shape">Bentuk Icon</string>
+    <string name="icon_size">Ukuran Icon</string>
+    <string name="grid_columns">Jumlah Kolom Grid</string>
+    <string name="show_labels">Tampilkan Nama Aplikasi</string>
+</resources>

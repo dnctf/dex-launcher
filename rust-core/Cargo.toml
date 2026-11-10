@@ -1,0 +1,15 @@
+[package]
+name = "dex-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["dnctf"]
+description = "Native Rust core engine for Dex Launcher on Android & HarmonyOS"
+
+[lib]
+name = "dex_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+jni = { version = "0.21", default-features = false }
+serde = { version = "1.0", default-features = false, features = ["derive", "alloc"] }
+serde_json = { version = "1.0", default-features = false, features = ["alloc"] }

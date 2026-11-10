@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Icon Shape -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bentuk Icon (Icon Shape)"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/dex_text_primary" />
+
+        <Spinner
+            android:id="@+id/spinner_icon_shape"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Icon Size -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ukuran Icon"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/dex_text_primary" />
+
+            <TextView
+                android:id="@+id/tv_icon_size_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="56 dp"
+                android:textColor="@color/dex_accent" />
+
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/seek_icon_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="32"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Grid Columns -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Jumlah Kolom Desktop"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/dex_text_primary" />
+
+            <TextView
+                android:id="@+id/tv_grid_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7 Kolom"
+                android:textColor="@color/dex_accent" />
+
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/seek_grid_columns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Show Labels -->
+        <CheckBox
+            android:id="@+id/cb_show_labels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tampilkan Nama Aplikasi di Desktop"
+            android:textColor="@color/dex_text_primary"
+            android:checked="true" />
+
+    </LinearLayout>
+
+</ScrollView>

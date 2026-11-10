@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dex_taskbar_bg">#E614161D</color>
+    <color name="dex_taskbar_border">#33FFFFFF</color>
+    <color name="dex_start_menu_bg">#F21C2029</color>
+    <color name="dex_card_border">#2EFFFFFF</color>
+    <color name="dex_search_bg">#292E3B</color>
+    <color name="dex_accent">#2D7FF9</color>
+    <color name="dex_text_primary">#FFFFFF</color>
+    <color name="dex_text_secondary">#B0B5C1</color>
+    <color name="dex_icon_tint">#E1E4EA</color>
+    <color name="transparent">#00000000</color>
+</resources>
